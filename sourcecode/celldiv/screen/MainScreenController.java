@@ -17,22 +17,16 @@ public class MainScreenController {
 
     @FXML
     void btnProkaPressed(ActionEvent event) {
-    	//new ChoosingScreen(storage1, storage2);
-    	new HelpScreen();
+    	//new HelpScreen();
     }
 
     @FXML
     void btnEukaPressed(ActionEvent event) {
-    	//new ChoosingScreen(storage2, storage1);
-    	new HelpScreen();
-    	
-    }    
-    // function for main screen
-    
+    	//new HelpScreen();
+    }
+    // Function for Main Screen
     public MainScreenController() {
 		// TODO Auto-generated constructor stub
     	super();
-    	//this.storage1 = storage1;
-    	//this.storage2 = storage2;
 	}
 }
