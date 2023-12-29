@@ -1,26 +1,33 @@
 package celldiv.cell;
 
 public class Phase {
-	private String phaseIMG;    // Illust image link
-    private String phaseTitle;
+	private String phaseIMG;    // Illustration image link (/celldiv/img/*.png)
+    private String phaseTitle;	// Phase name
 	private String phaseInfo;   // Phase description
-	
-	public Phase(String phaseIMG, String phaseInfo) {
+	// Constructor
+	public Phase(String phaseIMG, String phaseTitle) {
 		super();
-		this.phaseIMG = phaseIMG;
+		this.phaseIMG = "/celldiv/img/"+phaseIMG;
+        this.phaseTitle = phaseTitle;
+	}
+	
+	public Phase(String phaseIMG, String phaseTitle, String phaseInfo) {
+		super();
+		this.phaseIMG = "/celldiv/img/"+phaseIMG;
         this.phaseTitle = phaseTitle;
 		this.phaseInfo = phaseInfo;
 	}
 
-	public String getPhaseIMG() {
-		return phaseIMG;
+	// Getter
+	public String getIMG() {
+		return this.phaseIMG;
 	}
 
-	public String getPhaseTitle() {
-		return phaseTitle;
+	public String getTitle() {
+		return this.phaseTitle;
 	}
 
-    public String getPhaseInfo() {
-		return phaseInfo;
+    public String getInfo() {
+		return this.phaseInfo;
 	}
 }

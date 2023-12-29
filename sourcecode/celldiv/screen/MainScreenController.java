@@ -11,22 +11,25 @@ public class MainScreenController {
     }
     @FXML
     void btnQuitPressed(ActionEvent event) {
-    	int input = JOptionPane.showConfirmDialog(null, "Do you want to quit?", "Confirm to quit", JOptionPane.YES_NO_CANCEL_OPTION);
+    	int input = JOptionPane.showConfirmDialog(null, "Do you want to quit?", "Confirm to quit", JOptionPane.YES_NO_OPTION);
     	if (input == 0) System.exit(0);
     }
 
     @FXML
     void btnProkaPressed(ActionEvent event) {
-    	//new HelpScreen();
+    	new ChoosingScreen(0);
+    	// new HelpScreen();
     }
 
     @FXML
     void btnEukaPressed(ActionEvent event) {
-    	//new HelpScreen();
-    }
-    // Function for Main Screen
+    	new ChoosingScreen(1);
+    	// new HelpScreen();
+    	
+    }    
+    // function for main screen
+    
     public MainScreenController() {
-		// TODO Auto-generated constructor stub
     	super();
 	}
 }
