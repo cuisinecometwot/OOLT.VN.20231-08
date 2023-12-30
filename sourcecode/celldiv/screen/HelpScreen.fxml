@@ -11,7 +11,7 @@
          <children>
             <TextField alignment="CENTER" editable="false" text="The basic usage and aim of the application" />
             <TextArea fx:id="textArea" editable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="500.0" 
-            text="&quot;Visual CellDiv&quot; is the program that investigates cell division processes.&#10;The rules are simple:&#10;1. Main Menu: User can choose the type of cell (Prokaryote or Eukaryote), then choose to investigate one of cell division types (Amitosis, Mitosis, or Meiosis).&#10;2. After selection, this program starts demonstrating the progress of cell division through separate phases in Demo Screen. User can interact with demo screen by hitting Play, Pause, Replay, Back, Next buttons.&#10;3. User can also return to Main Menu at any time.&#10;4. Help: Shows The basic usage and aim of the application (You are here!)&#10;5. Quit" wrapText="true" />
+            text="&quot;Visual CellDiv&quot; is the program that investigates cell division processes.&#10;The rules are simple:&#10;1. Main Menu: User can choose the type of cell (Prokaryote or Eukaryote), then choose to investigate one of cell division types (Amitosis, Mitosis, or Meiosis).&#10;2. After selection, this program starts demonstrating the progress of cell division through separate phases in Demo Screen. User can interact with demo screen by hitting Play, Pause, Replay, Back, Next buttons.&#10;3. User can also return to Main Menu at any time.&#10;4. Help: Shows The basic usage and aim of the application.&#10;5. Quit" wrapText="true" />
          </children>
       </VBox>
    </center>

@@ -30,4 +30,8 @@ public class Phase {
     public String getInfo() {
 		return this.phaseInfo;
 	}
+    
+    public String toString() {
+    	return this.getTitle()+'\n'+this.getInfo();
+    }
 }
