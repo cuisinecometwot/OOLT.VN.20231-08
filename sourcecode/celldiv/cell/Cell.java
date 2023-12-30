@@ -10,7 +10,7 @@ public abstract class Cell {
     private String chromosome;
     private String ribosome;
     private String cytoplasm;
-    private String membrance;
+    private String membrane;
     private ArrayList<Phase> phases = new ArrayList<Phase>(MAX_PHASES);
     // Constructor
 	public Cell(String cellName, String cellIMG) {
@@ -20,7 +20,7 @@ public abstract class Cell {
 		this.chromosome = "store and transmit genetic information, ensure the cell's proper functioning and inheritance of traits to offspring";
 		this.ribosome = "read the cell's genetic code and assemble proteins from amino acids";
 		this.cytoplasm = "fills the interior of the cell and contains all the other cellular components";
-		this.membrance = "forms a selective barrier around the cell, controlling what comes in and out";
+		this.membrane = "forms a selective barrier around the cell, controlling what comes in and out";
 	}
 
 	public void addPhase(Phase phase) { // handle this pls
@@ -35,6 +35,34 @@ public abstract class Cell {
 
     public String getIMG() {
     	return this.cellIMG;
+    }
+    
+    public String getChromosome() {
+    	return this.chromosome;
+    }
+    
+    public String getRibosome() {
+    	return this.ribosome;
+    }
+    
+    public String getCytoplasm() {
+    	return this.cytoplasm;
+    }
+    
+    public String getMembrane() {
+    	return this.membrane;
+    }
+    
+    public Phase getPhase(int i) {
+    	return this.phases.get(i);
+    }
+    
+    public String toString() {
+        return "Cell Name: "+this.cellName+
+                "\nCell Components:"+"\nChromosome: "+this.chromosome
+                +"\nRibosome: "+this.ribosome
+                +"\nCytoplasm: "+this.cytoplasm
+                +"\nMembrane: "+this.membrane;
     }
 
 }

@@ -14,7 +14,7 @@ public class HelpScreen extends JFrame {
 		this.add(fxPanel);
 		this.setTitle("Help");
 		this.setVisible(true);
-		this.setSize(500, 400);
+		this.setSize(500, 250);
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
