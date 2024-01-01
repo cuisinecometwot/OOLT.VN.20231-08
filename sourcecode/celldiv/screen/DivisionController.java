@@ -14,7 +14,7 @@ import celldiv.cell.*;
 public class DivisionController {
 	private Cell cell = DemoScreen.cell;
 	private int currPhaseID = -1;				// counter
-	private Phase currPhase; // get first phase
+	private Phase currPhase; 					// get first phase
 	@FXML
 	private Button home;
 	@FXML
@@ -29,12 +29,17 @@ public class DivisionController {
 	private Button back;
 	
 	@FXML
+    public void initialize() throws IOException{
+		String path = new String(cell.getIMG());
+		setImage(path);
+	}
+	
+	@FXML
 	public void handlePlayButtonAction(ActionEvent event) {
 		// nanika
 	}
 	@FXML
 	public void handleReplayButtonAction(ActionEvent event) throws IOException {
-		// nanika
 		back.setVisible(false); next.setVisible(true);
 		currPhase = cell.getPhase(0);
 		currPhaseID = 0;
@@ -58,7 +63,6 @@ public class DivisionController {
 	}
 	@FXML
 	public void handleNextButtonAction(ActionEvent event) throws LimitExceededException, IOException {
-		// nanika
 		back.setVisible(true);
 		currPhase = cell.getPhase(currPhaseID + 1);
 		currPhaseID = currPhaseID + 1;

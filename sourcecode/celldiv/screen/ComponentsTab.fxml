@@ -16,38 +16,36 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="96.0">
                <children>
-                  <RadioButton fx:id="chromosome" disable="false" layoutY="132.0" mnemonicParsing="false" onAction="#btnOnAction" prefHeight="40.0" text="Chromosome" textAlignment="CENTER" toggleGroup="$selections">
+                  <RadioButton fx:id="nucleus" disable="true" layoutY="130.0" mnemonicParsing="false" onAction="#btnOnAction" prefHeight="40.0" text="Nucleus" textAlignment="CENTER" toggleGroup="$selections">
                      <toggleGroup>
                         <ToggleGroup fx:id="selections" />
                      </toggleGroup>
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets left="30.0" />
-                     </padding>
+                     <font><Font size="18.0" /></font>
+                     <padding><Insets left="30.0" /></padding>
                   </RadioButton>
-                  <RadioButton fx:id="ribosome" disable="false" layoutY="192.0" mnemonicParsing="false" onAction="#btnOnAction" prefHeight="40.0" text="Ribosome" toggleGroup="$selections">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets left="30.0" />
-                     </padding></RadioButton>
-                  <RadioButton fx:id="cytoplasm" disable="false" layoutY="252.0" mnemonicParsing="false" onAction="#btnOnAction" prefHeight="40.0" text="Cytoplasm" toggleGroup="$selections">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets left="30.0" />
-                     </padding></RadioButton>
-                  <RadioButton fx:id="membrane" disable="false" layoutY="312.0" mnemonicParsing="false" onAction="#btnOnAction" prefHeight="40.0" text="Membrane" toggleGroup="$selections">
-                     <padding>
-                        <Insets left="30.0" />
-                     </padding>
-                     <font>
-                        <Font size="18.0" />
-                     </font>
+                  <RadioButton fx:id="chromosome" disable="false" layoutY="190.0" mnemonicParsing="false" onAction="#btnOnAction" prefHeight="40.0" text="Chromosome" textAlignment="CENTER" toggleGroup="$selections">
+                     <font><Font size="18.0" /></font>
+                     <padding><Insets left="30.0" /></padding>
+                  </RadioButton>
+                  <RadioButton fx:id="ribosome" disable="false" layoutY="250.0" mnemonicParsing="false" onAction="#btnOnAction" prefHeight="40.0" text="Ribosome" toggleGroup="$selections">
+                     <font><Font size="18.0" /></font>
+                     <padding><Insets left="30.0" /></padding>
+                  </RadioButton>
+                  <RadioButton fx:id="cytoplasm" disable="false" layoutY="310.0" mnemonicParsing="false" onAction="#btnOnAction" prefHeight="40.0" text="Cytoplasm" toggleGroup="$selections">
+                     <font><Font size="18.0" /></font>
+                     <padding><Insets left="30.0" /></padding>
+                  </RadioButton>
+                  <RadioButton fx:id="membrane" disable="false" layoutY="370.0" mnemonicParsing="false" onAction="#btnOnAction" prefHeight="40.0" text="Membrane" toggleGroup="$selections">
+                     <font><Font size="18.0" /></font>
+                     <padding><Insets left="30.0" /></padding>
+                  </RadioButton>
+                  <RadioButton fx:id="fagellum" visible="false" layoutY="430.0" mnemonicParsing="false" onAction="#btnOnAction" prefHeight="40.0" text="Fagellum" toggleGroup="$selections">
+                     <font><Font size="18.0" /></font>
+                     <padding><Insets left="30.0" /></padding>
+                  </RadioButton>
+                  <RadioButton fx:id="microtubules" visible="false" layoutY="430.0" mnemonicParsing="false" onAction="#btnOnAction" prefHeight="40.0" text="Microtubules" toggleGroup="$selections">
+                     <font><Font size="18.0" /></font>
+                     <padding><Insets left="30.0" /></padding>
                   </RadioButton>
                </children>
             </AnchorPane>
