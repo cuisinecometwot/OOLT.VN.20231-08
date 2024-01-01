@@ -7,15 +7,16 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import celldiv.cell.*;
 
-
 public class DemoScreenController {
-	private int type;
+	private Cell cell = DemoScreen.cell;
 	private Scene scene;
 	private Stage stage;
 	
 	@FXML
+	private ComponentsController componentsController;
+	private DivisionController divisionController;
+	@FXML
 	private Button home;
-	
 	private Button play;
 	private Button pause;
 	private Button next;
@@ -26,9 +27,24 @@ public class DemoScreenController {
 	public void handleHomeButtonAction(ActionEvent event) {
 	    MainScreen.main(null);
 	}
+	public void handlePlayButtonAction(ActionEvent event) {
+		// nanika
+	}
+	public void handlePauseButtonAction(ActionEvent event) {
+		// nanika
+	}
+	public void handleBackButtonAction(ActionEvent event) {
+		// nanika
+	}
+	public void handleNextButtonAction(ActionEvent event) {
+		// nanika
+	}
+	public void handleReplayButtonAction(ActionEvent event) {
+		// nanika
+	}
 	
-	public DemoScreenController(int number) {
+	public DemoScreenController(Cell cell) {
 		super();
-		this.type = number;
+		this.cell = cell;
 	}
 }

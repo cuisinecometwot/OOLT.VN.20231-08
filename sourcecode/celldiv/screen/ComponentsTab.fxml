@@ -16,7 +16,7 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="96.0">
                <children>
-                  <RadioButton fx:id="chromosome" disable="true" layoutY="132.0" mnemonicParsing="false" onAction="#btnOnAction" prefHeight="40.0" text="Chromosome" textAlignment="CENTER" toggleGroup="$selections">
+                  <RadioButton fx:id="chromosome" disable="false" layoutY="132.0" mnemonicParsing="false" onAction="#btnOnAction" prefHeight="40.0" text="Chromosome" textAlignment="CENTER" toggleGroup="$selections">
                      <toggleGroup>
                         <ToggleGroup fx:id="selections" />
                      </toggleGroup>
@@ -27,21 +27,21 @@
                         <Insets left="30.0" />
                      </padding>
                   </RadioButton>
-                  <RadioButton fx:id="ribosome" disable="true" layoutY="192.0" mnemonicParsing="false" onAction="#btnOnAction" prefHeight="40.0" text="Ribosome" toggleGroup="$selections">
+                  <RadioButton fx:id="ribosome" disable="false" layoutY="192.0" mnemonicParsing="false" onAction="#btnOnAction" prefHeight="40.0" text="Ribosome" toggleGroup="$selections">
                      <font>
                         <Font size="18.0" />
                      </font>
                      <padding>
                         <Insets left="30.0" />
                      </padding></RadioButton>
-                  <RadioButton fx:id="cytoplasm" disable="true" layoutY="252.0" mnemonicParsing="false" onAction="#btnOnAction" prefHeight="40.0" text="Cytoplasm" toggleGroup="$selections">
+                  <RadioButton fx:id="cytoplasm" disable="false" layoutY="252.0" mnemonicParsing="false" onAction="#btnOnAction" prefHeight="40.0" text="Cytoplasm" toggleGroup="$selections">
                      <font>
                         <Font size="18.0" />
                      </font>
                      <padding>
                         <Insets left="30.0" />
                      </padding></RadioButton>
-                  <RadioButton fx:id="membrane" disable="true" layoutY="312.0" mnemonicParsing="false" onAction="#btnOnAction" prefHeight="40.0" text="Membrane" textFill="#ff1a1a" toggleGroup="$selections">
+                  <RadioButton fx:id="membrane" disable="false" layoutY="312.0" mnemonicParsing="false" onAction="#btnOnAction" prefHeight="40.0" text="Membrane" toggleGroup="$selections">
                      <padding>
                         <Insets left="30.0" />
                      </padding>
@@ -49,11 +49,6 @@
                         <Font size="18.0" />
                      </font>
                   </RadioButton>
-                  <Button fx:id="start" layoutX="50.0" layoutY="34.0" mnemonicParsing="false" onAction="#btnOnAction" text="START">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">

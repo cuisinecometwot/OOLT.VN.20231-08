@@ -1,31 +1,44 @@
 package celldiv.screen;
-import celldiv.cell.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
+import javax.naming.LimitExceededException;
 import javax.swing.JFrame;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import celldiv.cell.*;
+
 
 public class MainScreen extends JFrame {
-	public MainScreen() {
+	protected static CellCollection proka_collection;
+	protected static CellCollection euka_collection;
+	public MainScreen(CellCollection proka_collection, CellCollection euka_collection) {
 		super();
+		this.proka_collection = proka_collection;
+		this.euka_collection = euka_collection;
 		JFXPanel fxPanel = new JFXPanel();
 		this.add(fxPanel);
-		this.setTitle("Visual CellDiv");
+		this.setTitle("DIVIDE AND CONQUER");
 		this.setVisible(true);
 		this.setSize(896, 672);
+		JFrame frame = this;
+		this.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				new HelpScreen();
+				dispose();
+			}
+		});
 		
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
 				try {
 					FXMLLoader loader = new FXMLLoader(getClass().getResource("/celldiv/screen/MainScreen.fxml"));
-					MainScreenController controller = new MainScreenController();
+					MainScreenController controller = new MainScreenController(proka_collection, euka_collection);
 					loader.setController(controller);
 					Parent root = loader.load();
 					fxPanel.setScene(new Scene(root));
@@ -37,10 +50,14 @@ public class MainScreen extends JFrame {
 	}
 	
 	public static void main(String[] args) {
-		// Create 3 cells with different cell division type and phases
+		// Initialization
+		CellCollection proka_collection = new CellCollection();
+		CellCollection euka_collection = new CellCollection();
 		
+		// Create 3 cells with different cell division type and phases
 		// Prokaryote only has Amitosis
-		Prokaryote amitosis = new Prokaryote("Prokaryotic Cell", "proka/proka-0.png");
+
+		Prokaryote amitosis = new Prokaryote("Amitosis", "proka/proka-0.png");
 		Phase amitosis1 = new Phase("proka/amitosis-1.png","Interphase","In this phase, the cell grows and replicates its DNA. The DNA is not condensed into chromosomes at this point.");
 		Phase amitosis2 = new Phase("proka/amitosis-2.png","Nuclear division","The nucleus begins to elongate and then constricts in the middle.");
 		Phase amitosis3 = new Phase("proka/amitosis-3.png","Cytoplasmic division","The cytoplasm of the cell is pinched in two along with the nucleus, forming two daughter cells.");
@@ -49,7 +66,7 @@ public class MainScreen extends JFrame {
 		amitosis.addPhase(amitosis3);
 		
 		// Eukaryote has Mitosis and Meiosis
-		Eukaryote mitosis = new Eukaryote("Eukaryotic Cell", "euka/euka-0.png");
+		Eukaryote mitosis = new Eukaryote("Mitosis", "euka/euka-0.png");
 		Phase mitosis1 = new Phase("euka/mitosis-1.png","Prophase","- Chromosomes condense and become visible.\n"
 				+ "- Nuclear envelope starts to break down.\n"
 				+ "- Spindle fibers begin to form.");
@@ -68,7 +85,7 @@ public class MainScreen extends JFrame {
 		mitosis.addPhase(mitosis4);
 		mitosis.addPhase(mitosis5);
 		
-		Eukaryote meiosis = new Eukaryote("Eukaryotic Cell", "euka/euka-0.png");
+		Eukaryote meiosis = new Eukaryote("Meiosis", "euka/euka-0.png");
 		Phase meiosis1 = new Phase("euka/meiosis1.png","Prophase I","- Chromosomes condense, pair up and also exchange fragments.");
 		Phase meiosis2 = new Phase("euka/meiosis1.png","Metaphase I","- Homologue pairs—not individual chromosomes—line up at the metaphase plate for separation.");
 		Phase meiosis3 = new Phase("euka/meiosis1.png","Anaphase I","- The homologues are pulled apart and move apart to opposite ends of the cell.\n"
@@ -90,6 +107,12 @@ public class MainScreen extends JFrame {
 		meiosis.addPhase(meiosis7);
 		meiosis.addPhase(meiosis8);
 		
-		new MainScreen();
+		try {
+			proka_collection.addCell(amitosis);
+			euka_collection.addCell(mitosis);
+			euka_collection.addCell(meiosis);
+		} catch (LimitExceededException e) {e.printStackTrace();}
+		
+		new MainScreen(proka_collection, euka_collection);
 	}
 }

@@ -11,42 +11,36 @@ import javafx.scene.image.ImageView;
 import celldiv.cell.*;
 
 public class ComponentsController {
-	private int type = DemoScreen.type;
-	private Button start;
-	
-    private ImageView componentView;
+	private Cell cell = DemoScreen.cell;
+	@FXML
     private RadioButton chromosome;
+	@FXML
     private RadioButton ribosome;
+	@FXML
     private RadioButton cytoplasm;
+	@FXML
     private RadioButton membrane; 
-    
+	@FXML
     private ToggleGroup selections;
+	@FXML
+    private ImageView componentView;
+	@FXML
     private TextArea componentDesc;
     
     public void setImage(String path) throws IOException{
-    	Image image = new Image("/celldiv/img/"+path);
+    	Image image = new Image(path);
 		componentView.setImage(image);
-	
 	}
 	public void setText(String description) throws IOException{
 		componentDesc.setText(description);
-		
 	}
 	
 	public void btnOnAction() throws IOException{
 		String path = new String(cell.getIMG());
-		setImage(path);		
-		if(chromosome.isSelected()) {
-			setText(cell.getChromosome());
-		}
-		else if(ribosome.isSelected()) {
-			setText(cell.getRibosome());
-		}
-		else if (cytoplasm.isSelected()) {
-			setText(cell.getCytoplasm());
-		}
-		else if (membrane.isSelected()) {
-			setText(cell.getMembrane());
-		}
+		setImage(path);
+		if (chromosome.isSelected()) setText(cell.getChromosome());
+		else if (ribosome.isSelected()) setText(cell.getRibosome());
+		else if (cytoplasm.isSelected()) setText(cell.getCytoplasm());
+		else if (membrane.isSelected()) setText(cell.getMembrane());
 	}
 }

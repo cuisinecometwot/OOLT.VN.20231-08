@@ -1,4 +1,6 @@
 package celldiv.screen;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import javax.swing.JFrame;
 import javafx.application.Platform;
@@ -9,10 +11,10 @@ import javafx.scene.Scene;
 import celldiv.cell.*;
 
 public class DemoScreen extends JFrame{
-	protected static int type; // (0-2) Amitosis, Mitosis, Meiosis
-	public DemoScreen(int number) {
+	protected static Cell cell;
+	public DemoScreen(Cell cell) {
 		super();
-		this.type = number;
+		this.cell = cell;
 		JFXPanel fxPanel = new JFXPanel();
 		this.add(fxPanel);
 		
@@ -25,7 +27,7 @@ public class DemoScreen extends JFrame{
 			public void run() {
 				try {
 					FXMLLoader loader = new FXMLLoader(getClass().getResource("/celldiv/screen/Demo.fxml"));
-					DemoScreenController controller = new DemoScreenController(number);
+					DemoScreenController controller = new DemoScreenController(cell);
 					loader.setController(controller);
 					Parent root = loader.load();
 					fxPanel.setScene(new Scene(root));
@@ -34,5 +36,9 @@ public class DemoScreen extends JFrame{
 				}				
 			}
 		});	
+	}
+	
+	public static void main(String[] args) {		
+		new DemoScreen(cell);
 	}
 }
