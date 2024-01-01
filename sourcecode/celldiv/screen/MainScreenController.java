@@ -33,7 +33,7 @@ public class MainScreenController {
         String input = (String) JOptionPane.showInputDialog(null, "But ... which type?",
             "You choose ... Prokaryote!", JOptionPane.QUESTION_MESSAGE, null, choices, choices[0]);
         System.out.println(input);
-        if (proka_collection.checkCellByName("Amitosis")) new DemoScreen(proka_collection.getCellByName("Amitosis"));
+        if (input=="Amitosis") new DemoScreen(proka_collection.getCellByName("Amitosis"));
         else System.out.println("[EXCEPTION]"); // handle when User hit "Cancel"
     }
 

@@ -51,10 +51,10 @@
                   </RadioButton>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          	<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <ImageView fx:id="componentView" fitHeight="482.0" fitWidth="624.0" layoutX="-1.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true" />
-                  <TextArea fx:id="componentDesc" editable="false" layoutX="-1.0" prefHeight="98.0" prefWidth="624.0" wrapText="true" />
+                  <ImageView fx:id="componentView" fitHeight="464.0" fitWidth="624.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" />
+                  <TextArea fx:id="componentDesc" editable="false" prefHeight="80.0" prefWidth="624.0" wrapText="true" />
                </children>
             </AnchorPane>
         </items>

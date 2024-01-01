@@ -25,13 +25,13 @@ public class MainScreen extends JFrame {
 		this.setVisible(true);
 		this.setSize(896, 672);
 		JFrame frame = this;
-		this.addWindowListener(new WindowAdapter() {
+		/*this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				new HelpScreen();
 				dispose();
 			}
-		});
+		});*/
 		
 		Platform.runLater(new Runnable() {
 			@Override
@@ -86,17 +86,17 @@ public class MainScreen extends JFrame {
 		mitosis.addPhase(mitosis5);
 		
 		Eukaryote meiosis = new Eukaryote("Meiosis", "euka/euka-0.png");
-		Phase meiosis1 = new Phase("euka/meiosis1.png","Prophase I","- Chromosomes condense, pair up and also exchange fragments.");
-		Phase meiosis2 = new Phase("euka/meiosis1.png","Metaphase I","- Homologue pairs—not individual chromosomes—line up at the metaphase plate for separation.");
-		Phase meiosis3 = new Phase("euka/meiosis1.png","Anaphase I","- The homologues are pulled apart and move apart to opposite ends of the cell.\n"
+		Phase meiosis1 = new Phase("euka/meiosis-1.png","Prophase I","- Chromosomes condense, pair up and also exchange fragments.");
+		Phase meiosis2 = new Phase("euka/meiosis-1.png","Metaphase I","- Homologue pairs—not individual chromosomes—line up at the metaphase plate for separation.");
+		Phase meiosis3 = new Phase("euka/meiosis-1.png","Anaphase I","- The homologues are pulled apart and move apart to opposite ends of the cell.\n"
 				+ "- The sister chromatids of each chromosome remain attached to one another and don't come apart.");
-		Phase meiosis4 = new Phase("euka/meiosis1.png","Telophase I","- The chromosomes arrive at opposite poles of the cell.\n"
+		Phase meiosis4 = new Phase("euka/meiosis-1.png","Telophase I","- The chromosomes arrive at opposite poles of the cell.\n"
 				+ "- Cytokinesis usually occurs at the same time as telophase I, forming two haploid daughter cells.");
-		Phase meiosis5 = new Phase("euka/meiosis2.png","Prophase II","- Chromosomes condense and the nuclear envelope breaks down, if needed.\n"
+		Phase meiosis5 = new Phase("euka/meiosis-2.png","Prophase II","- Chromosomes condense and the nuclear envelope breaks down, if needed.\n"
 				+ "- The centrosomes move apart, the spindle forms between them, and the spindle microtubules begin to capture chromosomes.");
-		Phase meiosis6 = new Phase("euka/meiosis2.png","Metaphase II","- The chromosomes line up individually along the metaphase plate.");
-		Phase meiosis7 = new Phase("euka/meiosis2.png","Anaphase II","- The sister chromatids separate and are pulled towards opposite poles of the cell.");
-		Phase meiosis8 = new Phase("euka/meiosis2.png","Telophase II","- Nuclear membranes form around each set of chromosomes, and the chromosomes decondense.\n"
+		Phase meiosis6 = new Phase("euka/meiosis-2.png","Metaphase II","- The chromosomes line up individually along the metaphase plate.");
+		Phase meiosis7 = new Phase("euka/meiosis-2.png","Anaphase II","- The sister chromatids separate and are pulled towards opposite poles of the cell.");
+		Phase meiosis8 = new Phase("euka/meiosis-2.png","Telophase II","- Nuclear membranes form around each set of chromosomes, and the chromosomes decondense.\n"
 				+ "- Cytokinesis splits the chromosome sets into new cells, forming the final products of meiosis: four haploid cells in which each chromosome has just one chromatid.");
 		meiosis.addPhase(meiosis1);
 		meiosis.addPhase(meiosis2);

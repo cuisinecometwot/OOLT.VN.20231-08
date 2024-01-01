@@ -15,16 +15,17 @@
                   <fx:include maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="622.0" prefWidth="768.0" source="ComponentsTab.fxml" />
                </content>
           </Tab>
-          <!-- <Tab text="Cell Division">
+          <Tab text="Cell Division">
                <content>
                   <fx:include maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="622.0" prefWidth="768.0" source="DivisionTab.fxml" />
                </content>
-          </Tab>	-->
+          </Tab>
         </tabs>
       </TabPane>
       <Button fx:id="home" layoutX="782.0" mnemonicParsing="false" onAction="#handleHomeButtonAction" prefHeight="50.0" prefWidth="100.0" text="Home">
          <font>
             <Font size="18.0" />
-         </font></Button>
+         </font>
+      </Button>
    </children>
 </AnchorPane>
