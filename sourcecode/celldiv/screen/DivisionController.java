@@ -15,7 +15,7 @@ import celldiv.cell.*;
 
 public class DivisionController {
 	private Cell cell = DemoScreen.cell;
-	private int currPhaseID = -1;				// Counter
+	private int currPhaseID = 0;				// Counter
 	private int totalPhases = cell.getPhase();	// Total phases
 	private Phase currPhase;					// Current Phase
 	private boolean isRunning = false;
@@ -45,7 +45,7 @@ public class DivisionController {
 	}
 	@FXML
 	public void handlePlayButtonAction(ActionEvent event) {
-		if (currPhaseID == -1) currPhaseID = 0;
+		//if (currPhaseID == -1) currPhaseID = 0;
 		if (play.getText()=="PAUSE") {
 			isRunning = false;
 			play.setText("PLAY");
@@ -75,12 +75,14 @@ public class DivisionController {
 	                        Thread.currentThread().interrupt();
 	                    }
 	                }
+	                if (currPhaseID==totalPhases) play.setDisable(true);
 	            }
 	        }.start();
 		}
 	}
 	@FXML
 	public void handleReplayButtonAction(ActionEvent event) throws IOException {
+		play.setDisable(false);
 		isRunning = true;
 		play.setText("PAUSE");
 		back.setVisible(false); next.setVisible(true);
@@ -114,27 +116,57 @@ public class DivisionController {
 	}
 	@FXML
 	public void handleBackButtonAction(ActionEvent event) throws LimitExceededException, IOException {
-		next.setVisible(true);
-		currPhase = cell.getPhase(currPhaseID - 1);
-		currPhaseID = currPhaseID - 1;
-		
-		if (currPhaseID==0) back.setVisible(false);
-		String path = new String(currPhase.getIMG());
-		setImage(path);
-		setText(currPhase.toString());
-		double newProgress = (double)(currPhaseID + 1) / totalPhases;
+		play.setDisable(true);
+		new Thread(){
+			@Override
+            public void run() {
+                try {
+                	final double step = currPhaseID;
+            		next.setVisible(true);
+            		currPhase = cell.getPhase(currPhaseID - 1);
+            		currPhaseID = currPhaseID - 1;
+            		
+            		if (currPhaseID==0) back.setDisable(true);
+            		String path = new String(currPhase.getIMG());
+            		setImage(path);
+            		setText(currPhase.toString());
+            		
+            		Platform.runLater(() -> pb.setProgress(step/totalPhases));
+                    Thread.sleep(1000); 
+                } catch(IOException | InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }.start();
 	}
 	@FXML
 	public void handleNextButtonAction(ActionEvent event) throws LimitExceededException, IOException {
-		back.setVisible(true);
-		currPhase = cell.getPhase(currPhaseID + 1);
-		currPhaseID = currPhaseID + 1;
-		
-		if (currPhaseID+1==totalPhases) next.setVisible(false);
-		String path = new String(currPhase.getIMG());
-		setImage(path);
-		setText(currPhase.toString());
-		double newProgress = (double)(currPhaseID + 1) / totalPhases;
+		new Thread(){
+			@Override
+            public void run() {
+                try {
+                	back.setVisible(true);
+            		if (currPhaseID==0) {
+            			currPhase = cell.getPhase(0);
+            		}
+            		else {
+            			currPhase = cell.getPhase(currPhaseID + 1);
+            			currPhaseID = currPhaseID + 1;
+            		}
+            		final double step = currPhaseID+1;
+            		
+            		if (currPhaseID+1==totalPhases) next.setVisible(false);
+            		String path = new String(currPhase.getIMG());
+            		setImage(path);
+            		setText(currPhase.toString());
+            		
+            		Platform.runLater(() -> pb.setProgress(step/totalPhases));
+                    Thread.sleep(1000); 
+                } catch(IOException | InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }.start();
 	}
 	
 	public void setImage(String path) throws IOException{
