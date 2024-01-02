@@ -56,6 +56,9 @@ public abstract class Cell {
     public Phase getPhase(int i) {
     	return this.phases.get(i);
     }
+    public int getPhase() {
+    	return this.phases.size();
+    }
     
     public String toString() {
         return "Cell Name: "+this.cellName+
