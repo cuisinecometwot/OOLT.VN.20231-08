@@ -11,13 +11,14 @@ import javafx.scene.Scene;
 import celldiv.cell.*;
 
 public class DemoScreen extends JFrame{
+//public class DemoScreen extends Application {
 	protected static Cell cell;
 	public DemoScreen(Cell cell) {
 		super();
 		this.cell = cell;
 		JFXPanel fxPanel = new JFXPanel();
 		this.add(fxPanel);
-		
+
 		setTitle("Demonstration");
 		setVisible(true);
 		setSize(896, 672);
@@ -37,7 +38,6 @@ public class DemoScreen extends JFrame{
 			}
 		});	
 	}
-	
 	public static void main(String[] args) {		
 		new DemoScreen(cell);
 	}
