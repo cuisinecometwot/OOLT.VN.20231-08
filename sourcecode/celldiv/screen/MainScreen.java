@@ -1,6 +1,4 @@
 package celldiv.screen;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.IOException;
 import javax.naming.LimitExceededException;
 import javax.swing.JFrame;
@@ -13,8 +11,8 @@ import celldiv.cell.*;
 
 
 public class MainScreen extends JFrame {
-	protected static CellCollection proka_collection;
-	protected static CellCollection euka_collection;
+	protected  CellCollection proka_collection;
+	protected  CellCollection euka_collection;
 	public MainScreen(CellCollection proka_collection, CellCollection euka_collection) {
 		super();
 		this.proka_collection = proka_collection;
@@ -23,22 +21,15 @@ public class MainScreen extends JFrame {
 		this.add(fxPanel);
 		this.setTitle("DIVIDE AND CONQUER");
 		this.setVisible(true);
-		this.setSize(896, 672);
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		JFrame frame = this;
-		/*this.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				new HelpScreen();
-				dispose();
-			}
-		});*/
 		
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
 				try {
 					FXMLLoader loader = new FXMLLoader(getClass().getResource("/celldiv/screen/MainScreen.fxml"));
-					MainScreenController controller = new MainScreenController(proka_collection, euka_collection);
+					MainScreenController controller = new MainScreenController(frame, proka_collection, euka_collection);
 					loader.setController(controller);
 					Parent root = loader.load();
 					fxPanel.setScene(new Scene(root));

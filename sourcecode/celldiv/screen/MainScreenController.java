@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import celldiv.cell.*;
 
 public class MainScreenController {
+	private JFrame frame;
 	private CellCollection proka_collection;
 	private CellCollection euka_collection;
 	@FXML
@@ -33,8 +34,10 @@ public class MainScreenController {
         String input = (String) JOptionPane.showInputDialog(null, "But ... which type?",
             "You choose ... Prokaryote!", JOptionPane.QUESTION_MESSAGE, null, choices, choices[0]);
         System.out.println(input);
-        if (input=="Amitosis") new DemoScreen(proka_collection.getCellByName("Amitosis"));
-        else System.out.println("[EXCEPTION]"); // handle when User hit "Cancel"
+        if (input=="Amitosis") {
+        	new DemoScreen(proka_collection.getCellByName("Amitosis"));
+        	frame.dispose();
+        }
     }
 
     @FXML
@@ -43,14 +46,19 @@ public class MainScreenController {
         String input = (String) JOptionPane.showInputDialog(null, "But ... which type?",
             "You choose ... Eukaryote!", JOptionPane.QUESTION_MESSAGE, null, choices, choices[0]);
         System.out.println(input);
-        if (input=="Mitosis") new DemoScreen(euka_collection.getCellByName("Mitosis"));
-        else if (input=="Meiosis") new DemoScreen(euka_collection.getCellByName("Meiosis"));
-		else System.out.println("[EXCEPTION]"); // handle when User hit "Cancel"
+        if (input=="Mitosis") {
+        	new DemoScreen(euka_collection.getCellByName("Mitosis"));
+        	frame.dispose();
+        }
+        else if (input=="Meiosis") {
+        	new DemoScreen(euka_collection.getCellByName("Meiosis"));
+        	frame.dispose();
+        }
     }
-    // function for main screen
     
-    public MainScreenController(CellCollection proka_collection, CellCollection euka_collection) {
+    public MainScreenController(JFrame frame, CellCollection proka_collection, CellCollection euka_collection) {
     	super();
+    	this.frame = frame;
     	this.proka_collection = proka_collection;
     	this.euka_collection = euka_collection;
 	}

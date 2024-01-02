@@ -1,6 +1,4 @@
 package celldiv.screen;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.IOException;
 import javax.swing.JFrame;
 import javafx.application.Platform;
@@ -11,13 +9,13 @@ import javafx.scene.Scene;
 import celldiv.cell.*;
 
 public class DemoScreen extends JFrame{
-//public class DemoScreen extends Application {
 	protected static Cell cell;
 	public DemoScreen(Cell cell) {
 		super();
 		this.cell = cell;
 		JFXPanel fxPanel = new JFXPanel();
 		this.add(fxPanel);
+		JFrame frame = this;
 
 		setTitle("Demonstration");
 		setVisible(true);
@@ -28,7 +26,7 @@ public class DemoScreen extends JFrame{
 			public void run() {
 				try {
 					FXMLLoader loader = new FXMLLoader(getClass().getResource("/celldiv/screen/Demo.fxml"));
-					DemoScreenController controller = new DemoScreenController(cell);
+					DemoScreenController controller = new DemoScreenController(frame, cell);
 					loader.setController(controller);
 					Parent root = loader.load();
 					fxPanel.setScene(new Scene(root));
