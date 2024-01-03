@@ -52,10 +52,10 @@ public class DivisionController {
 	@FXML
 	public void handlePlayButtonAction(ActionEvent event) {
 		if (play.getText()=="PAUSE") { // user want to pause
+			play.setText("PLAY");
 			isRunning = false;
 			back.setDisable(false);
 			next.setDisable(false);
-			play.setText("PLAY");
 			replay.setDisable(false);
 		}
 		else { // user want to play
@@ -69,14 +69,15 @@ public class DivisionController {
 	                    Platform.runLater(() -> pb.setProgress(step/totalPhases));
 	                    //back.setDisable(false);
 	            		currPhase = cell.getPhase(currPhaseID);
-	            		if (isRunning) {
-	            			back.setDisable(true);
-	            			next.setDisable(true);
-	            			play.setText("PAUSE");
-	            			replay.setDisable(true);
-	            		}
+	            		back.setDisable(true);
+	            		next.setDisable(true);
+	            		replay.setDisable(true);
+	            		
 	            		if (currPhaseID+1==totalPhases) {
-	            			next.setDisable(true);
+	            			//next.setDisable(true);
+	            			//play.setDisable(true);
+	            			//play.setText("DONE");
+	            			isRunning = false;
 	            			play.setDisable(true);
 	            		}
 	            		
@@ -86,14 +87,23 @@ public class DivisionController {
 	                		setText(currPhase.toString());
 	                        Thread.sleep(1000); 
 	                    } catch(IOException | InterruptedException e) {
-	                        Thread.currentThread().interrupt();
-	                    } if (!isRunning) break;
+	                        Thread.currentThread().stop();
+	                    	//throw new RuntimeException("Interuppted ...\n"+e);
+	                    }
+	                    // if paused, stop current thread
+	                    if (!isRunning) {
+	                    	// isRunning = false;
+	                    	if (currPhaseID!=0) back.setDisable(false);
+	            	        next.setDisable(false); //
+	            			replay.setDisable(false);
+	                    	Thread.currentThread().stop();
+	                    }
 	                    currPhaseID = currPhaseID + 1;
 	                }
+	                // reached the end of division process
 	                isRunning = false;
-
         	        back.setDisable(false);
-        	        if (currPhaseID==totalPhases) next.setDisable(true);
+        	        next.setDisable(true);
         			replay.setDisable(false);
 	            }
 	        }.start();
@@ -102,11 +112,10 @@ public class DivisionController {
 	@FXML
 	public void handleReplayButtonAction(ActionEvent event) throws IOException {
 		isRunning = true;
-		replay.setDisable(true);
-		play.setDisable(false);
-		play.setText("PAUSE");
-		back.setDisable(true); next.setDisable(false);
-		currPhase = cell.getPhase(0);
+		// replay.setDisable(true);
+		play.setDisable(false); play.setText("PAUSE");
+		// back.setDisable(true); next.setDisable(true);
+		// currPhase = cell.getPhase(0);
 		currPhaseID = 0;
 		new Thread(){
 			@Override
@@ -114,16 +123,17 @@ public class DivisionController {
                 for (double i = currPhaseID; i < totalPhases; i++){
                     final double step = i+1;
                     Platform.runLater(() -> pb.setProgress(step/totalPhases));
-                    back.setDisable(false);
+                    // back.setDisable(false);
             		currPhase = cell.getPhase(currPhaseID);
-            		if (isRunning) {
-            			back.setDisable(true);
-            			next.setDisable(true);
-            			play.setText("PAUSE");
-            			replay.setDisable(true);
-            		}
+            		back.setDisable(true);
+            		next.setDisable(true);
+            		// play.setText("PAUSE");
+            		replay.setDisable(true);
+            		
             		if (currPhaseID+1==totalPhases) {
-            			next.setDisable(true);
+            			//next.setDisable(true);
+            			//play.setDisable(true);
+            			isRunning = false;
             			play.setDisable(true);
             			replay.setDisable(false);
             		}
@@ -134,14 +144,20 @@ public class DivisionController {
                 		setText(currPhase.toString());
                         Thread.sleep(1000); 
                     } catch(IOException | InterruptedException e) {
-                        Thread.currentThread().interrupt();
-                    } if (!isRunning) break;
+                        Thread.currentThread().stop();
+                    	//throw new RuntimeException("Interuppted ...\n"+e);
+                    } if (!isRunning) { // if paused
+                    	if (currPhaseID!=0) back.setDisable(false);
+            	        next.setDisable(false); //
+            			replay.setDisable(false);
+                    	Thread.currentThread().stop();
+                    }
             		currPhaseID = currPhaseID + 1;
                 }
+                // reached the end of division process
                 isRunning = false;
-
     	        back.setDisable(false);
-    			if (currPhaseID==totalPhases) next.setDisable(true);
+    	        next.setDisable(true);
     			replay.setDisable(false);
             }
         }.start();
