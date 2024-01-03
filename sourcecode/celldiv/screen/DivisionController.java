@@ -51,12 +51,14 @@ public class DivisionController {
 	// This is MADNESS!
 	@FXML
 	public void handlePlayButtonAction(ActionEvent event) {
-		replay.setDisable(false);
 		if (play.getText()=="PAUSE") { // user want to pause
-			isRunning = false;
 			play.setText("PLAY");
+			isRunning = false;
+			back.setDisable(false);
+			next.setDisable(false);
+			replay.setDisable(false);
 		}
-		else { // user want to play
+		else { // user want to start/continue
 			isRunning = true;
 			play.setText("PAUSE");
 			new Thread(){
@@ -65,13 +67,12 @@ public class DivisionController {
 	                for (double i = currPhaseID; i < totalPhases; i++){
 	                    final double step = i+1;
 	                    Platform.runLater(() -> pb.setProgress(step/totalPhases));
-	                    back.setDisable(false);
 	            		currPhase = cell.getPhase(currPhaseID);
-	            		currPhaseID = currPhaseID + 1;
-	            		if (currPhaseID==totalPhases) {
-	            			next.setDisable(true);
-	            			play.setDisable(true);
-	            		}
+	            		back.setDisable(true);
+	            		next.setDisable(true);
+	            		replay.setDisable(true);
+	            		
+	            		
 	            		
 	                    try {
 	                    	String path = new String(currPhase.getIMG());
@@ -79,9 +80,25 @@ public class DivisionController {
 	                		setText(currPhase.toString());
 	                        Thread.sleep(1000); 
 	                    } catch(IOException | InterruptedException e) {
-	                        Thread.currentThread().interrupt();
-	                    } if (!isRunning) break;
-	                }
+	                        Thread.currentThread().stop();
+	                    }
+	                    // if paused, stop current thread
+	                    if (!isRunning) {
+	                    	if (currPhaseID!=0) back.setDisable(false);
+	            	        next.setDisable(false); //
+	            			replay.setDisable(false);
+	                    	Thread.currentThread().stop();
+	                    }
+	                    // reached the end of division process
+	                    if (currPhaseID+1==totalPhases) {
+	            			isRunning = false;
+	            			play.setDisable(true);
+	            			back.setDisable(false);
+	            	        next.setDisable(true);
+	            			replay.setDisable(false);
+	            		}
+	                    currPhaseID = currPhaseID + 1;
+	                } // ... continue or break loop
 	            }
 	        }.start();
 		}
@@ -89,11 +106,7 @@ public class DivisionController {
 	@FXML
 	public void handleReplayButtonAction(ActionEvent event) throws IOException {
 		isRunning = true;
-		replay.setDisable(true);
-		play.setDisable(false);
-		play.setText("PAUSE");
-		back.setDisable(true); next.setDisable(false);
-		currPhase = cell.getPhase(0);
+		play.setDisable(false); play.setText("PAUSE");
 		currPhaseID = 0;
 		new Thread(){
 			@Override
@@ -101,15 +114,10 @@ public class DivisionController {
                 for (double i = currPhaseID; i < totalPhases; i++){
                     final double step = i+1;
                     Platform.runLater(() -> pb.setProgress(step/totalPhases));
-                    back.setDisable(false);
             		currPhase = cell.getPhase(currPhaseID);
-            		currPhaseID = currPhaseID + 1;
-            		
-            		if (currPhaseID==totalPhases) {
-            			next.setDisable(true);
-            			play.setDisable(true);
-            			replay.setDisable(false);
-            		}
+            		back.setDisable(true);
+            		next.setDisable(true);
+            		replay.setDisable(true);
             		
                     try {
                     	String path = new String(currPhase.getIMG());
@@ -117,21 +125,36 @@ public class DivisionController {
                 		setText(currPhase.toString());
                         Thread.sleep(1000); 
                     } catch(IOException | InterruptedException e) {
-                        Thread.currentThread().interrupt();
-                    } if (!isRunning) break;
+                        Thread.currentThread().stop();
+                    } if (!isRunning) { // if paused
+                    	if (currPhaseID!=0) back.setDisable(false);
+            	        next.setDisable(false); //
+            			replay.setDisable(false);
+                    	Thread.currentThread().stop();
+                    }
+                    // reached the end of division process
+                    if (currPhaseID+1==totalPhases) {
+            			isRunning = false;
+            			play.setDisable(true);
+            			back.setDisable(false);
+            	        next.setDisable(true);
+            			replay.setDisable(false);
+            		}
+            		currPhaseID = currPhaseID + 1;
                 }
             }
         }.start();
 	}
 	@FXML
 	public void handleBackButtonAction(ActionEvent event) throws IOException {
-		replay.setDisable(false);
+		// Once go back, user can play
+		play.setDisable(false); play.setText("PLAY");
+		replay.setDisable(false); next.setDisable(false);
 		new Thread(){
 			@Override
             public void run() {
                 try {
                 	final double step = currPhaseID;
-            		next.setDisable(false);
             		currPhaseID = currPhaseID - 1;
             		currPhase = cell.getPhase(currPhaseID);
             		if (currPhaseID==0) back.setDisable(true);
@@ -148,16 +171,16 @@ public class DivisionController {
 	}
 	@FXML
 	public void handleNextButtonAction(ActionEvent event) throws IOException {
-		replay.setDisable(false);
+		// If forward to the next phase, user can go back
+		replay.setDisable(false); back.setDisable(false);
 		new Thread(){
 			@Override
             public void run() {
                 try {
-                	back.setDisable(false);
                 	currPhaseID = currPhaseID + 1;
             		currPhase = cell.getPhase(currPhaseID);
             		final double step = currPhaseID+1;
-            		if (currPhaseID==totalPhases-1) next.setDisable(true);
+            		if (currPhaseID+1==totalPhases) next.setDisable(true);
             		String path = new String(currPhase.getIMG());
             		setImage(path);
             		setText(currPhase.toString());
