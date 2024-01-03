@@ -51,10 +51,12 @@ public class DivisionController {
 	// This is MADNESS!
 	@FXML
 	public void handlePlayButtonAction(ActionEvent event) {
-		replay.setDisable(false);
 		if (play.getText()=="PAUSE") { // user want to pause
 			isRunning = false;
+			back.setDisable(false);
+			next.setDisable(false);
 			play.setText("PLAY");
+			replay.setDisable(false);
 		}
 		else { // user want to play
 			isRunning = true;
@@ -65,10 +67,15 @@ public class DivisionController {
 	                for (double i = currPhaseID; i < totalPhases; i++){
 	                    final double step = i+1;
 	                    Platform.runLater(() -> pb.setProgress(step/totalPhases));
-	                    back.setDisable(false);
+	                    //back.setDisable(false);
 	            		currPhase = cell.getPhase(currPhaseID);
-	            		currPhaseID = currPhaseID + 1;
-	            		if (currPhaseID==totalPhases) {
+	            		if (isRunning) {
+	            			back.setDisable(true);
+	            			next.setDisable(true);
+	            			play.setText("PAUSE");
+	            			replay.setDisable(true);
+	            		}
+	            		if (currPhaseID+1==totalPhases) {
 	            			next.setDisable(true);
 	            			play.setDisable(true);
 	            		}
@@ -81,7 +88,13 @@ public class DivisionController {
 	                    } catch(IOException | InterruptedException e) {
 	                        Thread.currentThread().interrupt();
 	                    } if (!isRunning) break;
+	                    currPhaseID = currPhaseID + 1;
 	                }
+	                isRunning = false;
+
+        	        back.setDisable(false);
+        	        if (currPhaseID==totalPhases) next.setDisable(true);
+        			replay.setDisable(false);
 	            }
 	        }.start();
 		}
@@ -103,9 +116,13 @@ public class DivisionController {
                     Platform.runLater(() -> pb.setProgress(step/totalPhases));
                     back.setDisable(false);
             		currPhase = cell.getPhase(currPhaseID);
-            		currPhaseID = currPhaseID + 1;
-            		
-            		if (currPhaseID==totalPhases) {
+            		if (isRunning) {
+            			back.setDisable(true);
+            			next.setDisable(true);
+            			play.setText("PAUSE");
+            			replay.setDisable(true);
+            		}
+            		if (currPhaseID+1==totalPhases) {
             			next.setDisable(true);
             			play.setDisable(true);
             			replay.setDisable(false);
@@ -119,7 +136,13 @@ public class DivisionController {
                     } catch(IOException | InterruptedException e) {
                         Thread.currentThread().interrupt();
                     } if (!isRunning) break;
+            		currPhaseID = currPhaseID + 1;
                 }
+                isRunning = false;
+
+    	        back.setDisable(false);
+    			if (currPhaseID==totalPhases) next.setDisable(true);
+    			replay.setDisable(false);
             }
         }.start();
 	}
