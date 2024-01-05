@@ -12,4 +12,5 @@ Hồ Văn Đức - 20215037
 
 Bùi Mạnh Dũng - 20215010
 
-**Demo Video: ...**
+**Demo Video: 
+        https://drive.google.com/file/d/1fSjiJIrxv0anFSU3t8i7TZEO2Vph3RK_/view
