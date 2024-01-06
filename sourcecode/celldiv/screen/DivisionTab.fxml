@@ -9,36 +9,33 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="580.0" prefWidth="896.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="celldiv.screen.DivisionController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="580.0" prefWidth="896.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="celldiv.screen.DivisionController">
    <children>
       <SplitPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="580.0" prefWidth="896.0">
         <items>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                 <children>
-                	<ProgressBar fx:id="pb" layoutX="14.0" layoutY="524.0" prefHeight="40.0" prefWidth="583.0" progress="0.0" />
-                    <Button fx:id="play" disable="false" layoutX="630.0" layoutY="274.0" mnemonicParsing="false" onAction="#handlePlayButtonAction" prefHeight="40.0" prefWidth="250.0" text="PLAY">
+                	<ProgressBar fx:id="pb" layoutX="630.0" layoutY="440.0" prefHeight="40.0" prefWidth="250.0" progress="0.0" style="-fx-accent: #7FFF00"/>
+                    <Button fx:id="play" disable="false" layoutX="630.0" layoutY="300.0" mnemonicParsing="false" onAction="#handlePlayButtonAction" prefHeight="40.0" prefWidth="250.0" text="PLAY">
                         <font><Font size="18.0" /></font>
                     </Button>
-                    <Button fx:id="replay" disable="false" layoutX="630.0" layoutY="310.0" mnemonicParsing="false" onAction="#handleReplayButtonAction" prefHeight="40.0" prefWidth="250.0" text="REPLAY">
+                    <Button fx:id="replay" disable="false" layoutX="630.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleReplayButtonAction" prefHeight="40.0" prefWidth="250.0" text="REPLAY">
                         <font><Font size="18.0" /></font>
                     </Button>
-                    <HBox layoutX="630.0" layoutY="314.0" />
-                  <AnchorPane layoutX="14.0" layoutY="9.0" minHeight="0.0" minWidth="0.0" prefHeight="515.0" prefWidth="526.0">
-                      <children>
-                          <ImageView fx:id="phaseView" fitHeight="484.0" fitWidth="583.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" />
-                      </children>
-                  </AnchorPane>
-                    <TextArea fx:id="phaseDesc" editable="false" layoutX="630.0" layoutY="86.0" prefHeight="170.0" prefWidth="250.0" wrapText="true" />
-     				<Button fx:id="next" disable="false" layoutX="755.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleNextButtonAction" prefHeight="40.0" prefWidth="125.0" text="NEXT">
-         				<font>
-                        <Font size="18.0" />
-                     </font>
-     				</Button>
-     				<Button fx:id="back" disable="true" layoutX="630.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleBackButtonAction" prefHeight="40.0" prefWidth="125.0" text="BACK">
-         				<font>
-                        <Font size="18.0" />
-                     </font>
-     				</Button>
+                    <HBox layoutX="630.0" layoutY="380.0">
+        				<Button fx:id="back" disable="true" mnemonicParsing="false" onAction="#handleBackButtonAction" prefHeight="40.0" prefWidth="125.0" text="BACK">
+            				<font><Font size="18.0" /></font>
+        				</Button>
+        				<Button fx:id="next" disable="false" mnemonicParsing="false" onAction="#handleNextButtonAction" prefHeight="40.0" prefWidth="125.0" text="NEXT">
+            				<font><Font size="18.0" /></font>
+        				</Button>
+    				</HBox>
+                  	<AnchorPane layoutX="25.0" layoutY="25.0" minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="500.0">
+                      	<children>
+                          <ImageView fx:id="phaseView" fitHeight="530.0" fitWidth="530.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true" />
+                      	</children>
+                  	</AnchorPane>
+                    <TextArea fx:id="phaseDesc" editable="false" layoutX="630.0" layoutY="30.0" prefHeight="250.0" prefWidth="250.0" wrapText="true" />
                 </children>
             </AnchorPane>
         </items>
